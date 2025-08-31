@@ -1,33 +1,12 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import CaptureSection from "@/components/sections/CaptureSection";
-import ClaritySection from "@/components/sections/ClaritySection";
-import IntelligenceSection from "@/components/sections/IntelligenceSection";
-import ActionSection from "@/components/sections/ActionSection";
-import ChatBot from "@/components/ChatBot";
+// Update this page (the content is just a fallback if you fail to update the page)
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-bg relative overflow-x-hidden">
-      <Header />
-      
-      {/* Act 1: The Chaos */}
-      <Hero />
-      
-      {/* Act 2: The Capture */}
-      <CaptureSection />
-      
-      {/* Act 3: The Clarity */}
-      <ClaritySection />
-      
-      {/* Act 4: The Intelligence */}
-      <IntelligenceSection />
-      
-      {/* Act 5: The Action */}
-      <ActionSection />
-      
-      {/* Chat Bot */}
-      <ChatBot />
+    <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
+        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+      </div>
     </div>
   );
 };
