@@ -11,7 +11,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
-      when: "beforeChildren", // Asegura que el contenedor se anime antes que los hijos
+      when: "beforeChildren",
     },
   },
 };
@@ -29,7 +29,6 @@ const itemVariants = {
 };
 // --- Fin Animación ---
 
-
 const FinalCTASection = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -43,16 +42,16 @@ const FinalCTASection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
-    // Here you would integrate with your lead capture system
+    // Aquí se integraría tu sistema de captura de leads
   };
 
   return (
     <section className="py-40 relative overflow-hidden">
-      {/* Background Effects */}
+      {/* Backgrounds */}
       <div className="absolute inset-0 mesh-gradient opacity-30" />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       
-      {/* Floating Orbs */}
+      {/* Decoraciones */}
       <div className="absolute top-20 left-20 w-40 h-40 orb-glow animate-float opacity-20" />
       <div className="absolute bottom-32 right-16 w-32 h-32 orb animate-morph opacity-15" style={{ animationDelay: "2s" }} />
       <div className="absolute top-1/2 left-1/3 w-24 h-24 orb-glow animate-pulse-orb opacity-10" style={{ animationDelay: "4s" }} />
@@ -61,11 +60,10 @@ const FinalCTASection = () => {
         <motion.div 
             className="max-w-5xl mx-auto"
             initial="hidden"
-            whileInView="visible" // La animación se activa cuando la sección entra en la vista
-            viewport={{ once: true, amount: 0.2 }} // Se activa una vez, cuando el 20% es visible
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
             variants={containerVariants}
         >
-          {/* Main CTA Content */}
           <div className="space-y-12 mb-16">
             <div className="space-y-8">
               {/* INICIO: Textos refactorizados */}
@@ -89,7 +87,6 @@ const FinalCTASection = () => {
               {/* FIN: Textos refactorizados */}
             </div>
 
-            {/* Demo Form */}
             {!isSubmitted ? (
               <motion.div 
                 className="glass-ultra rounded-3xl p-12 max-w-3xl mx-auto"
@@ -101,42 +98,14 @@ const FinalCTASection = () => {
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <Input
-                      type="text"
-                      placeholder="Nombre completo"
-                      className="glass border-glass-border bg-glass text-foreground placeholder:text-muted-foreground px-6 py-4 text-lg rounded-xl"
-                      required
-                    />
-                    <Input
-                      type="email"
-                      placeholder="Email corporativo"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className="glass border-glass-border bg-glass text-foreground placeholder:text-muted-foreground px-6 py-4 text-lg rounded-xl"
-                      required
-                    />
+                    <Input type="text" placeholder="Nombre completo" className="glass border-glass-border bg-glass text-foreground placeholder:text-muted-foreground px-6 py-4 text-lg rounded-xl" required />
+                    <Input type="email" placeholder="Email corporativo" value={email} onChange={(e) => setEmail(e.target.value)} className="glass border-glass-border bg-glass text-foreground placeholder:text-muted-foreground px-6 py-4 text-lg rounded-xl" required />
                   </div>
-                  
                   <div className="grid md:grid-cols-2 gap-6">
-                    <Input
-                      type="text"
-                      placeholder="Empresa"
-                      className="glass border-glass-border bg-glass text-foreground placeholder:text-muted-foreground px-6 py-4 text-lg rounded-xl"
-                      required
-                    />
-                    <Input
-                      type="text"
-                      placeholder="Tamaño del equipo"
-                      className="glass border-glass-border bg-glass text-foreground placeholder:text-muted-foreground px-6 py-4 text-lg rounded-xl"
-                      required
-                    />
+                    <Input type="text" placeholder="Empresa" className="glass border-glass-border bg-glass text-foreground placeholder:text-muted-foreground px-6 py-4 text-lg rounded-xl" required />
+                    <Input type="text" placeholder="Tamaño del equipo" className="glass border-glass-border bg-glass text-foreground placeholder:text-muted-foreground px-6 py-4 text-lg rounded-xl" required />
                   </div>
-
-                  <Button 
-                    type="submit"
-                    size="lg"
-                    className="w-full glass-strong hover:glass-ultra hover:shadow-glow transition-all duration-500 bg-gradient-primary border-0 px-8 py-6 text-xl font-semibold rounded-2xl group"
-                  >
+                  <Button type="submit" size="lg" className="w-full glass-strong hover:glass-ultra hover:shadow-glow transition-all duration-500 bg-gradient-primary border-0 px-8 py-6 text-xl font-semibold rounded-2xl group">
                     <span className="group-hover:scale-105 transition-transform duration-300 flex items-center justify-center">
                       Reservar Demo Ahora
                       <ArrowRight className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
@@ -149,7 +118,7 @@ const FinalCTASection = () => {
                 </p>
               </motion.div>
             ) : (
-              <div className="glass-ultra rounded-3xl p-12 max-w-3xl mx-auto animate-scale-in">
+              <motion.div className="glass-ultra rounded-3xl p-12 max-w-3xl mx-auto" variants={itemVariants}>
                 <div className="flex items-center justify-center w-20 h-20 bg-gradient-primary rounded-full mx-auto mb-6">
                   <CheckCircle className="w-10 h-10 text-primary-foreground" />
                 </div>
@@ -160,24 +129,14 @@ const FinalCTASection = () => {
                   Nuestro equipo se pondrá en contacto contigo en las próximas 2 horas para agendar tu demo personalizada.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
-                  <span className="glass px-4 py-2 rounded-lg text-sm text-foreground flex items-center">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Demo en 24-48h
-                  </span>
-                  <span className="glass px-4 py-2 rounded-lg text-sm text-foreground flex items-center">
-                    <Users className="w-4 h-4 mr-2" />
-                    Equipo especializado
-                  </span>
-                  <span className="glass px-4 py-2 rounded-lg text-sm text-foreground flex items-center">
-                    <Zap className="w-4 h-4 mr-2" />
-                    Configuración inmediata
-                  </span>
+                    <span className="glass px-4 py-2 rounded-lg text-sm text-foreground flex items-center"><Calendar className="w-4 h-4 mr-2" />Demo en 24-48h</span>
+                    <span className="glass px-4 py-2 rounded-lg text-sm text-foreground flex items-center"><Users className="w-4 h-4 mr-2" />Equipo especializado</span>
+                    <span className="glass px-4 py-2 rounded-lg text-sm text-foreground flex items-center"><Zap className="w-4 h-4 mr-2" />Configuración inmediata</span>
                 </div>
-              </div>
+              </motion.div>
             )}
           </div>
 
-          {/* Trust Indicators */}
           <motion.div 
             className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
             variants={itemVariants}
@@ -190,30 +149,20 @@ const FinalCTASection = () => {
             ))}
           </motion.div>
 
-          {/* Secondary Actions */}
           <motion.div 
             className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16"
             variants={itemVariants}
           >
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="glass border-glass-border hover:glass-strong hover:shadow-accent-glow transition-all duration-500 px-8 py-4 rounded-2xl"
-            >
+            <Button variant="outline" size="lg" className="glass border-glass-border hover:glass-strong hover:shadow-accent-glow transition-all duration-500 px-8 py-4 rounded-2xl">
               Ver Casos de Uso
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="glass border-glass-border hover:glass-strong hover:shadow-accent-glow transition-all duration-500 px-8 py-4 rounded-2xl"
-            >
+            <Button variant="outline" size="lg" className="glass border-glass-border hover:glass-strong hover:shadow-accent-glow transition-all duration-500 px-8 py-4 rounded-2xl">
               Explorar Precios
             </Button>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Bottom Gradient */}
       <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   );
