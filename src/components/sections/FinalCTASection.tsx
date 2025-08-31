@@ -2,6 +2,33 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, CheckCircle, Calendar, Users, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+
+// --- Animación (reutilizamos las mismas variantes para consistencia) ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      when: "beforeChildren", // Asegura que el contenedor se anime antes que los hijos
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+// --- Fin Animación ---
+
 
 const FinalCTASection = () => {
   const [email, setEmail] = useState("");
@@ -31,26 +58,43 @@ const FinalCTASection = () => {
       <div className="absolute top-1/2 left-1/3 w-24 h-24 orb-glow animate-pulse-orb opacity-10" style={{ animationDelay: "4s" }} />
       
       <div className="container mx-auto px-6 text-center relative z-10">
-        <div className="max-w-5xl mx-auto">
+        <motion.div 
+            className="max-w-5xl mx-auto"
+            initial="hidden"
+            whileInView="visible" // La animación se activa cuando la sección entra en la vista
+            viewport={{ once: true, amount: 0.2 }} // Se activa una vez, cuando el 20% es visible
+            variants={containerVariants}
+        >
           {/* Main CTA Content */}
           <div className="space-y-12 mb-16">
-            <div className="space-y-8 animate-on-scroll">
-              <h2 className="text-5xl md:text-8xl font-bold leading-tight">
-                Transforma tu soporte.{" "}
+            <div className="space-y-8">
+              {/* INICIO: Textos refactorizados */}
+              <motion.h2 
+                className="text-5xl md:text-8xl font-bold leading-tight"
+                variants={itemVariants}
+              >
+                <span className="text-gradient animate-glow">Powering Your</span>
                 <br className="hidden md:block" />
-                <span className="text-gradient animate-glow">Potencia a tu equipo.</span>
-              </h2>
+                Data-Driven Future.
+              </motion.h2>
               
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
-                Implementa Flux.ia en minutos y observa el impacto en horas. 
+              <motion.p 
+                className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light"
+                variants={itemVariants}
+              >
+                Deja de gestionar tareas. Empieza a orquestar resultados.
                 <br className="hidden md:block" />
-                ¿Listo para llevar tus operaciones al siguiente nivel?
-              </p>
+                Implementa Flux.ia en minutos y observa el impacto en horas.
+              </motion.p>
+              {/* FIN: Textos refactorizados */}
             </div>
 
             {/* Demo Form */}
             {!isSubmitted ? (
-              <div className="glass-ultra rounded-3xl p-12 max-w-3xl mx-auto animate-on-scroll" style={{ animationDelay: "0.3s" }}>
+              <motion.div 
+                className="glass-ultra rounded-3xl p-12 max-w-3xl mx-auto"
+                variants={itemVariants}
+              >
                 <h3 className="text-2xl font-semibold text-foreground mb-8">
                   Solicita una Demo Personalizada
                 </h3>
@@ -103,7 +147,7 @@ const FinalCTASection = () => {
                 <p className="text-muted-foreground text-sm mt-6">
                   Sin compromiso. Sin tarjeta de crédito. Solo 15 minutos para mostrarte el futuro de tu soporte interno.
                 </p>
-              </div>
+              </motion.div>
             ) : (
               <div className="glass-ultra rounded-3xl p-12 max-w-3xl mx-auto animate-scale-in">
                 <div className="flex items-center justify-center w-20 h-20 bg-gradient-primary rounded-full mx-auto mb-6">
@@ -134,17 +178,23 @@ const FinalCTASection = () => {
           </div>
 
           {/* Trust Indicators */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto animate-on-scroll" style={{ animationDelay: "0.6s" }}>
-            {benefits.map((benefit, index) => (
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            variants={itemVariants}
+          >
+            {benefits.map((benefit) => (
               <div key={benefit} className="flex items-center space-x-3">
                 <CheckCircle className="w-6 h-6 text-success flex-shrink-0" />
                 <span className="text-muted-foreground">{benefit}</span>
               </div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Secondary Actions */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16 animate-on-scroll" style={{ animationDelay: "0.9s" }}>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16"
+            variants={itemVariants}
+          >
             <Button 
               variant="outline" 
               size="lg"
@@ -159,8 +209,8 @@ const FinalCTASection = () => {
             >
               Explorar Precios
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Bottom Gradient */}

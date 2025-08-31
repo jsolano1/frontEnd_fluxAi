@@ -1,5 +1,33 @@
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+
+// --- Animación ---
+// Variante para el contenedor principal: orquesta la aparición de sus hijos
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // Cada elemento hijo aparecerá con 0.2s de retraso
+    },
+  },
+};
+
+// Variante para cada elemento hijo: define cómo aparece individualmente
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+// --- Fin Animación ---
+
 
 const Hero = () => {
   const chaosRef = useRef<HTMLDivElement>(null);
@@ -73,25 +101,48 @@ const Hero = () => {
       
       {/* Content */}
       <div className="container mx-auto px-6 text-center relative z-10">
-        <div className="max-w-5xl mx-auto space-y-10">
-          <div className="space-y-6 animate-on-scroll in-view">
-            <h1 className="text-6xl md:text-8xl font-bold leading-tight tracking-tight">
+        <motion.div 
+            className="max-w-5xl mx-auto space-y-10"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
+          <div className="space-y-6">
+            <motion.h1 
+                className="text-6xl md:text-8xl font-bold leading-tight tracking-tight"
+                variants={itemVariants}
+            >
               Tu equipo es{" "}
               <span className="text-gradient animate-glow">brillante</span>
               <br />
               Su tiempo, un{" "}
               <span className="text-accent-gradient">caos</span>
-            </h1>
+            </motion.h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
+            <motion.p 
+                className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light"
+                variants={itemVariants}
+            >
               Cada email, mensaje y solicitud interrumpe el trabajo que realmente genera valor. 
               <br className="hidden md:block" />
               Flux.ia es el cerebro orquestador de IA que pone orden, liberando el potencial de tus equipos técnicos.
-            </p>
+            </motion.p>
+            
+            {/* INICIO: Slogan integrado */}
+            <motion.p 
+              className="text-lg text-accent font-semibold tracking-wider pt-4"
+              variants={itemVariants}
+            >
+              Powering Your Data-Driven Future
+            </motion.p>
+            {/* FIN: Slogan integrado */}
+
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-12 animate-on-scroll in-view" 
-               style={{ animationDelay: "0.3s" }}>
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-12"
+            variants={itemVariants}
+          >
             <Button 
               size="lg" 
               className="glass-strong hover:glass-ultra hover:shadow-glow transition-all duration-500 bg-gradient-primary border-0 px-10 py-7 text-lg font-semibold rounded-2xl group"
@@ -107,8 +158,8 @@ const Hero = () => {
             >
               Ver Planes
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Gradient Overlay for smooth transition */}
