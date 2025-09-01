@@ -1,68 +1,38 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
+// Este es un placeholder para tu logo. Idealmente, importa tu archivo SVG aquí.
+const Logo = () => (
+  <div className="flex items-center">
+    {/* Reemplaza este SVG con tu logo real de GuanaCloud */}
+    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 0L93.3 25V75L50 100L6.7 75V25L50 0Z" fill="hsl(var(--primary))"/>
+        <path d="M50 12L83.92 29.5V70.5L50 88L16.08 70.5V29.5L50 12Z" fill="hsl(var(--background))"/>
+        <path d="M50 22L75.6 35.75V64.25L50 78L24.4 64.25V35.75L50 22Z" fill="hsl(var(--success))"/>
+    </svg>
+    <span className="text-2xl font-bold ml-3 text-foreground">GuanaCloud</span>
+  </div>
+);
+
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass backdrop-blur-xl" : "bg-transparent"
-      }`}
-    >
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">F</span>
-            </div>
-            <span className="text-xl font-bold text-gradient">Flux.ia</span>
-          </div>
-
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a 
-              href="#features" 
-              className="text-foreground/80 hover:text-foreground transition-colors duration-200"
-            >
-              Características
-            </a>
-            <a 
-              href="#cases" 
-              className="text-foreground/80 hover:text-foreground transition-colors duration-200"
-            >
-              Casos de Uso
-            </a>
-            <a 
-              href="#pricing" 
-              className="text-foreground/80 hover:text-foreground transition-colors duration-200"
-            >
-              Precios
-            </a>
-            <a 
-              href="#blog" 
-              className="text-foreground/80 hover:text-foreground transition-colors duration-200"
-            >
-              Blog
-            </a>
-          </div>
-
-          {/* CTA Button */}
-          <Button className="glass-strong hover:shadow-glow transition-all duration-300 bg-gradient-primary border-0">
-            Solicitar Demo
-          </Button>
-        </div>
-      </nav>
+    <header className="fixed top-0 left-0 right-0 z-50 glass-strong border-b border-glass-border">
+      <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+        <a href="#" aria-label="Página de inicio de GuanaCloud">
+            <Logo />
+        </a>
+        <nav className="hidden md:flex items-center gap-8">
+          <a href="#servicios" className="text-muted-foreground hover:text-foreground transition-colors">Servicios</a>
+          <a href="#producto" className="text-muted-foreground hover:text-foreground transition-colors">Producto</a>
+          <a href="#nosotros" className="text-muted-foreground hover:text-foreground transition-colors">Nosotros</a>
+          <a href="#contacto" className="text-muted-foreground hover:text-foreground transition-colors">Contacto</a>
+        </nav>
+        <Button 
+            className="hidden md:flex glass hover:glass-strong transition-all duration-300 bg-primary/10 hover:bg-primary/20"
+            variant="outline"
+        >
+            Agendar Reunión
+        </Button>
+      </div>
     </header>
   );
 };
