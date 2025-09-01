@@ -187,6 +187,15 @@
   transform: translateY(0);
 }
 
+@keyframes orbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Estilos de Componentes Personalizados */
 .orb {
   background: radial-gradient(circle, hsl(var(--primary) / 0.8) 0%, hsl(var(--primary) / 0) 70%);

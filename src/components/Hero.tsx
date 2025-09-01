@@ -1,94 +1,44 @@
-import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-// 1. Importa 'motion' de framer-motion
 import { motion } from "framer-motion";
+import MultiAgentVisual from "@/components/MultiAgentVisual"; // <-- 1. IMPORTA EL NUEVO COMPONENTE
 
-// 2. Define las variantes de la animación para orquestar la entrada
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Aplica un retraso de 0.2s entre cada elemento hijo
+      staggerChildren: 0.2,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0 }, // Empieza 20px más abajo y totalmente transparente
+  hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
       duration: 0.6,
-      ease: "easeOut", // Un efecto de desaceleración suave
+      ease: "easeOut",
     },
   },
 };
 
 const Hero = () => {
-  const chaosRef = useRef<HTMLDivElement>(null);
-  const orbsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Tu código para crear los orbes y líneas de fondo permanece igual
-    if (chaosRef.current) {
-        const container = chaosRef.current;
-        if (container.children.length > 0) return;
-        for (let i = 0; i < 12; i++) {
-          const orb = document.createElement("div");
-          orb.className = "absolute w-3 h-3 orb animate-chaos";
-          orb.style.left = Math.random() * 100 + "%";
-          orb.style.top = Math.random() * 100 + "%";
-          orb.style.animationDelay = Math.random() * 4 + "s";
-          container.appendChild(orb);
-        }
-        for (let i = 0; i < 20; i++) {
-            const line = document.createElement("div");
-            line.className = "absolute bg-gradient-to-r from-primary/20 via-accent/15 to-transparent h-px animate-chaos";
-            line.style.width = Math.random() * 150 + 80 + "px";
-            line.style.left = Math.random() * 90 + "%";
-            line.style.top = Math.random() * 90 + "%";
-            line.style.transform = `rotate(${Math.random() * 360}deg)`;
-            line.style.animationDelay = Math.random() * 5 + "s";
-            container.appendChild(line);
-        }
-    }
-    if (orbsRef.current) {
-        const container = orbsRef.current;
-        if (container.children.length > 0) return;
-        for (let i = 0; i < 8; i++) {
-          const orb = document.createElement("div");
-          const size = 80 + Math.random() * 120;
-          orb.className = "absolute orb-glow animate-float";
-          orb.style.width = size + "px";
-          orb.style.height = size + "px";
-          orb.style.left = Math.random() * 100 + "%";
-          orb.style.top = Math.random() * 100 + "%";
-          orb.style.animationDelay = Math.random() * 6 + "s";
-          orb.style.opacity = "0.1";
-          container.appendChild(orb);
-        }
-    }
-  }, []);
-
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Fondos y decoraciones (sin cambios) */}
+      {/* Fondos y decoraciones */}
       <div className="absolute inset-0 mesh-gradient opacity-40" />
-      <div ref={chaosRef} className="absolute inset-0 opacity-70" />
-      <div ref={orbsRef} className="absolute inset-0 opacity-50" />
-      <div className="absolute top-20 right-20 w-40 h-40 glass-ultra rounded-full animate-float" style={{ animationDelay: "1s" }} />
-      <div className="absolute bottom-32 left-16 w-32 h-32 glass-strong rounded-full animate-morph" style={{ animationDelay: "3s" }} />
-      <div className="absolute top-1/2 right-1/3 w-24 h-24 orb-glow animate-pulse-orb" style={{ animationDelay: "2s" }} />
       
-      {/* 3. Contenido envuelto en componentes 'motion' */}
+      {/* 2. REEMPLAZAMOS EL CAOS POR EL NUEVO VISUALIZADOR */}
+      <MultiAgentVisual />
+      
       <div className="container mx-auto px-6 text-center relative z-10">
         <motion.div
           className="max-w-5xl mx-auto space-y-10"
           variants={containerVariants}
           initial="hidden"
-          animate="visible" // La animación se ejecuta al cargar el componente
+          animate="visible"
         >
           <div className="space-y-6">
             <motion.h1
