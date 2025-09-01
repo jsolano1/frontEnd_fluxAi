@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 
-// Este es un placeholder para tu logo. Idealmente, importa tu archivo SVG aquí.
+// Placeholder para tu logo. Reemplázalo con tu componente de logo si lo tienes.
 const Logo = () => (
   <div className="flex items-center">
-    {/* Reemplaza este SVG con tu logo real de GuanaCloud */}
+    {/* Idealmente, aquí iría tu logo SVG */}
     <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M50 0L93.3 25V75L50 100L6.7 75V25L50 0Z" fill="hsl(var(--primary))"/>
         <path d="M50 12L83.92 29.5V70.5L50 88L16.08 70.5V29.5L50 12Z" fill="hsl(var(--background))"/>
@@ -24,7 +24,6 @@ const Header = () => {
           <a href="#servicios" className="text-muted-foreground hover:text-foreground transition-colors">Servicios</a>
           <a href="#producto" className="text-muted-foreground hover:text-foreground transition-colors">Producto</a>
           <a href="#nosotros" className="text-muted-foreground hover:text-foreground transition-colors">Nosotros</a>
-          <a href="#contacto" className="text-muted-foreground hover:text-foreground transition-colors">Contacto</a>
         </nav>
         <Button 
             className="hidden md:flex glass hover:glass-strong transition-all duration-300 bg-primary/10 hover:bg-primary/20"
