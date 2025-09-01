@@ -4,7 +4,8 @@ import CaptureSection from "@/components/sections/CaptureSection";
 import ClaritySection from "@/components/sections/ClaritySection";
 import IntelligenceSection from "@/components/sections/IntelligenceSection";
 import ActionSection from "@/components/sections/ActionSection";
-import Footer from "@/components/Footer"; // <-- 1. IMPORTA EL NUEVO COMPONENTE
+import Footer from "@/components/Footer";
+import ChatBot from "@/components/ChatBot"; // <-- 1. IMPORTA EL NUEVO COMPONENTE
 
 const Index = () => {
   return (
@@ -32,7 +33,8 @@ const Index = () => {
         <IntelligenceSection />
         <ActionSection />
       </main>
-      <Footer /> {/* <-- 2. AÑADE EL COMPONENTE AL FINAL */}
+      <Footer />
+      <ChatBot /> {/* <-- 2. AÑADE EL COMPONENTE (fuera del main/footer para que sea fijo) */}
     </>
   );
 };
