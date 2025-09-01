@@ -1,38 +1,39 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import OrchestratorSection from "@/components/sections/OrchestratorSection";
+import CaptureSection from "@/components/sections/CaptureSection";
 import ClaritySection from "@/components/sections/ClaritySection";
 import IntelligenceSection from "@/components/sections/IntelligenceSection";
-import CommandCenterSection from "@/components/sections/CommandCenterSection";
-import FinalCTASection from "@/components/sections/FinalCTASection";
-import ChatBot from "@/components/ChatBot";
+import ActionSection from "@/components/sections/ActionSection";
+import Footer from "@/components/Footer"; // <-- 1. IMPORTA EL NUEVO COMPONENTE
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative overflow-x-hidden">
+    <>
       <Header />
-      
-      {/* Act 1: El Ruido Operativo */}
-      <Hero />
-      
-      {/* Act 2: El Cerebro Orquestador */}
-      <OrchestratorSection />
-      
-      {/* Act 3: La Claridad (Enhanced) */}
-      <ClaritySection />
-      
-      {/* Act 4: La Inteligencia (Enhanced) */}
-      <IntelligenceSection />
-      
-      {/* Act 5: El Centro de Comando */}
-      <CommandCenterSection />
-      
-      {/* Act 6: La Invitación */}
-      <FinalCTASection />
-      
-      {/* Chat Bot */}
-      <ChatBot />
-    </div>
+      <main>
+        <Hero
+          title="Tu equipo es brillante. Su tiempo, un caos."
+          description="Cada email, mensaje y solicitud interrumpe el trabajo que realmente genera valor. Flux.ia es el cerebro orquestador de IA que pone orden, liberando el potencial de tus equipos técnicos."
+          buttons={[
+            {
+              href: "#",
+              label: "Ver Demo Interactiva",
+              variant: "default",
+            },
+            {
+              href: "#",
+              label: "Ver Planes",
+              variant: "outline",
+            },
+          ]}
+        />
+        <CaptureSection />
+        <ClaritySection />
+        <IntelligenceSection />
+        <ActionSection />
+      </main>
+      <Footer /> {/* <-- 2. AÑADE EL COMPONENTE AL FINAL */}
+    </>
   );
 };
 
