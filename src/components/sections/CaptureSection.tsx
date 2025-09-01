@@ -1,8 +1,6 @@
-// src/components/sections/CaptureSection.tsx
-
 import { motion } from "framer-motion";
+import MultiAgentVisual from "@/components/MultiAgentVisual"; // <-- IMPORTANTE
 
-// Reutilizamos las mismas variantes para consistencia
 const containerVariants = {
   hidden: {},
   visible: {
@@ -26,15 +24,14 @@ const itemVariants = {
 
 const CaptureSection = () => {
   return (
-    <section className="py-24">
+    <section className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div
-          // La animación se activa cuando el componente es visible en la pantalla
           initial="hidden"
           whileInView="visible"
-          // Se activa una vez, cuando al menos el 25% del componente es visible
           viewport={{ once: true, amount: 0.25 }}
           variants={containerVariants}
+          className="flex flex-col items-center" // Centramos el contenido
         >
           <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-bold text-center mb-4">
             Deja que la IA reciba el primer golpe
@@ -42,16 +39,15 @@ const CaptureSection = () => {
           <motion.p variants={itemVariants} className="text-xl text-muted-foreground text-center max-w-3xl mx-auto mb-16">
             Flux.ia analiza, prioriza y enruta cada solicitud al instante. Transforma el triaje manual en un flujo de trabajo inteligente y automático.
           </motion.p>
-          <motion.div variants={itemVariants}>
-            {/* El contenido visual (imagen o simulación) también se animará */}
-            <div className="glass-strong rounded-3xl p-8 border border-glass-border">
-              <img
-                src="/placeholder.svg" // Reemplaza con tu imagen o componente de simulación
-                alt="Simulación de la captura de tiquetes por la IA"
-                className="w-full h-auto rounded-2xl"
-              />
-            </div>
+          
+          {/* AQUÍ REEMPLAZAMOS LA IMAGEN EN BLANCO */}
+          <motion.div 
+            variants={itemVariants} 
+            className="w-full h-[600px] flex items-center justify-center relative -mt-24 -mb-24" // Ajustamos el tamaño y posicionamiento
+          >
+            <MultiAgentVisual />
           </motion.div>
+
         </motion.div>
       </div>
     </section>
