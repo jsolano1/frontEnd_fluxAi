@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import MultiAgentVisual from "@/components/MultiAgentVisual"; // <-- IMPORTANTE
 
 const containerVariants = {
   hidden: {},
@@ -40,12 +39,17 @@ const CaptureSection = () => {
             Flux.ia analiza, prioriza y enruta cada solicitud al instante. Transforma el triaje manual en un flujo de trabajo inteligente y automático.
           </motion.p>
           
-          {/* AQUÍ REEMPLAZAMOS LA IMAGEN EN BLANCO */}
+          {/* AQUÍ REEMPLAZAMOS LA ANIMACIÓN CON UNA IMAGEN CONCEPTUAL */}
           <motion.div 
             variants={itemVariants} 
-            className="w-full h-[600px] flex items-center justify-center relative -mt-24 -mb-24" // Ajustamos el tamaño y posicionamiento
+            className="w-full max-w-4xl mx-auto" // Ajustamos el tamaño
           >
-            <MultiAgentVisual />
+            {/* Se recomienda usar una imagen o un SVG que represente el concepto de triaje o captura de datos */}
+            <img 
+              src="/placeholder.svg" // Puedes reemplazar esto con la ruta a tu nueva imagen
+              alt="Visualización del proceso de captura de solicitudes" 
+              className="w-full h-auto rounded-2xl glass-strong border border-glass-border" 
+            />
           </motion.div>
 
         </motion.div>

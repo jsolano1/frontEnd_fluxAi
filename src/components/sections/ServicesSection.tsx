@@ -1,38 +1,17 @@
 import { motion } from "framer-motion";
 import { BrainCircuit, DatabaseZap, Cloud, CloudCog } from "lucide-react";
 
+// ... (el array 'services' y las variantes 'containerVariants' se mantienen igual)
 const services = [
-  {
-    icon: BrainCircuit,
-    title: "Consultoría en IA y Data Science",
-    description: "Diseñamos e implementamos estrategias y modelos de IA que generan un impacto medible en tu negocio.",
-  },
-  {
-    icon: DatabaseZap,
-    title: "Ingeniería y Arquitectura de Datos",
-    description: "Construimos el ecosistema de datos sólido y escalable que necesitas para el futuro, desde el ETL hasta el Data Warehouse.",
-  },
-  {
-    icon: Cloud,
-    title: "Migraciones Multicloud (GCP, AWS, Azure)",
-    description: "Llevamos tus datos a la nube de forma segura y optimizada, eligiendo la mejor tecnología para cada caso de uso.",
-  },
-  {
-    icon: CloudCog,
-    title: "Diagnóstico y Optimización",
-    description: "Analizamos tu entorno de datos actual para identificar oportunidades de mejora en costos, rendimiento y seguridad.",
-  },
+  { icon: BrainCircuit, title: "Consultoría en IA y Data Science", description: "Diseñamos e implementamos estrategias y modelos de IA que generan un impacto medible en tu negocio." },
+  { icon: DatabaseZap, title: "Ingeniería de Datos", description: "Construimos el ecosistema de datos sólido y escalable que necesitas para el futuro." },
+  { icon: Cloud, title: "Migraciones Multicloud", description: "Llevamos tus datos a GCP, AWS o Azure de forma segura y optimizada." },
+  { icon: CloudCog, title: "Diagnóstico y Optimización", description: "Analizamos tu entorno actual para identificar oportunidades de mejora." },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.2 } },
-};
+const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.2 } } };
+const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } } };
 
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
-};
 
 const ServicesSection = () => {
   return (
@@ -56,13 +35,17 @@ const ServicesSection = () => {
               <motion.div
                 key={service.title}
                 variants={itemVariants}
-                className="glass-strong p-8 rounded-3xl border border-glass-border h-full flex flex-col"
+                className="relative glass-strong p-8 rounded-3xl border border-glass-border h-full flex flex-col group hover:border-primary/50 transition-colors duration-300"
               >
-                <div className="bg-gradient-primary w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                {/* Borde animado que aparece al hacer hover */}
+                <div className="absolute inset-0 rounded-3xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="shimmer-border"/>
+                </div>
+                <div className="bg-gradient-primary w-16 h-16 rounded-2xl flex items-center justify-center mb-6 z-10">
                   <service.icon className="w-8 h-8 text-primary-foreground" />
                 </div>
-                <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-                <p className="text-muted-foreground flex-grow">{service.description}</p>
+                <h3 className="text-xl font-bold mb-4 z-10">{service.title}</h3>
+                <p className="text-muted-foreground flex-grow z-10">{service.description}</p>
               </motion.div>
             ))}
           </div>
